@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var app      = express();
 var database = require('./config/database');
 var path = require('path');
-var bodyParser = require('body-parser');         // pull information from HTML POST (express4)
+var bodyParser = require('body-parser');        
+require("dotenv").config();
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ extname: '.hbs' });
 // Handlebars setup
