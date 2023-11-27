@@ -10,14 +10,26 @@ const hbs = exphbs.create({ extname: '.hbs' });
 
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
-var port = process.env.PORT || 8000;
+// var port = process.env.PORT || 8000;
 
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
-mongoose.connect("mongodb://localhost:27017/sales", { useNewUrlParser: true, useUnifiedTopology: true });
+main().catch((err) => console.log(err));
+async function main() {
+  try {
+    await mongoose.connect(database.url);
 
+    console.log("Database connection established");
+
+    app.listen(process.env.PORT, () => {
+      console.log("Listening on port " + process.env.PORT);
+    });
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+  }
+}
 // mongoose.connect(database.url);
 app.set('views', path.join(__dirname, 'views'));
 var Sale = require('./models/invoice');
@@ -207,5 +219,5 @@ app.put('/api/sales/:invoiceId', async (req, res) => {
 
 
 
-app.listen(port);
+// app.listen(port);
 console.log("App listening on port : " + port);
