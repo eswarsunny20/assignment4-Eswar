@@ -3,35 +3,21 @@ var mongoose = require('mongoose');
 var app      = express();
 var database = require('./config/database');
 var path = require('path');
-var bodyParser = require('body-parser');        
-require("dotenv").config();
+var bodyParser = require('body-parser');         // pull information from HTML POST (express4)
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ extname: '.hbs' });
 // Handlebars setup
 
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
-// var port = process.env.PORT || 8000;
+var port = process.env.PORT || 8000;
 
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
-main().catch((err) => console.log(err));
-async function main() {
-  try {
-    await mongoose.connect(database.url);
 
-    console.log("Database connection established");
-
-    app.listen(process.env.PORT, () => {
-      console.log("Listening on port " + process.env.PORT);
-    });
-  } catch (error) {
-    console.error("Error connecting to the database:", error);
-  }
-}
-// mongoose.connect(database.url);
+mongoose.connect(database.url);
 app.set('views', path.join(__dirname, 'views'));
 var Sale = require('./models/invoice');
 
@@ -154,6 +140,23 @@ app.get('/api/sales/:invoiceId', async (req, res) => {
 });
 
 
+// Route to show a specific invoice by _id or invoiceID
+// app.get('/api/sales/:invoiceId', async (req, res) => {
+//     try {
+//         const invoiceId = req.params.invoiceId;
+//         const invoice = await Sale.findOne({ "Invoice ID": invoiceId });
+
+//         if (!invoice) {
+//             return res.status(404).send("Invoice not found");
+//         }
+
+//         res.json({ invoice });
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).send('Error retrieving invoice data');
+//     }
+// });
+
 
 // Route to insert a new invoice
 app.post('/api/sales', async (req, res) => {
@@ -216,9 +219,17 @@ app.put('/api/sales/:invoiceId', async (req, res) => {
     }
 });
 
+// app.get('/api/sales', async (req, res) => {
+//     try {
+//         const invoices = await Sale.find();
+//         res.json({ invoices });
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).send('Error retrieving invoice data');
+//     }
+// });
 
 
 
-
-// app.listen(port);
-// console.log("App listening on port : " + port);
+app.listen(port);
+console.log("App listening on port : " + port);
