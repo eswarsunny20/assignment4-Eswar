@@ -16,8 +16,9 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse applica
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
+mongoose.connect("mongodb://localhost:27017/sales", { useNewUrlParser: true, useUnifiedTopology: true });
 
-mongoose.connect(database.url);
+// mongoose.connect(database.url);
 app.set('views', path.join(__dirname, 'views'));
 var Sale = require('./models/invoice');
 
