@@ -1,0 +1,95 @@
+<!-- views/invoice.hbs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sales Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Invoice ID</th>
+                <th>Branch</th>
+                <th>City</th>
+                <th>Customer Type</th>
+                <th>Product Line</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Tax 5%</th>
+                <th>Total</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Payment</th>
+                <th>COGS</th>
+                <th>Gross Income</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each sales}}
+            <tr>
+                <td>{{this.[Invoice ID]}}</td>
+                <td>{{this.Branch}}</td>
+                <td>{{this.City}}</td>
+                <td>{{this.[Customer type]}}</td>
+                <td>{{this.[Product line]}}</td>
+                <td>{{this.name}}</td>
+                <td><img src="{{image}}" alt="Product Image"></td>
+                <td>{{this.[Unit price]}}</td>
+                <td>{{this.Quantity}}</td>
+                <td>{{this.[Tax 5%]}}</td>
+                <td>{{this.Total}}</td>
+                <td>{{this.Date}}</td>
+                <td>{{this.Time}}</td>
+                <td>{{this.Payment}}</td>
+                <td>{{this.cogs}}</td>
+                <td>{{this.[gross income]}}</td>
+                <td>{{this.Rating}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</body>
+
+</html>

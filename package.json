@@ -1,0 +1,21 @@
+{
+  "name": "asn4-mongo-eswar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "express-validator": "^6.14.2",
+    "handlebars": "^4.7.8",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.12.3"
+  },
+  "author": "Eswar",
+  "license": "ISC"
+}

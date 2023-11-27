@@ -1,0 +1,13 @@
+<!-- Add a form to search by product line -->
+<form action="/api/sales/searchProductLine" method="GET">
+    <label for="productLine">Search by Product Line:</label>
+    <input type="text" id="productLine" name="productLine">
+    <input type="submit" value="Search">
+</form>
+
+<!-- Display search results here -->
+{{#if sales.length}}
+    <!-- Display the search results in a table as previously shown -->
+{{else}}
+    <p>No results found.</p>
+{{/if}}
