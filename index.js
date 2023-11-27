@@ -140,23 +140,6 @@ app.get('/api/sales/:invoiceId', async (req, res) => {
 });
 
 
-// Route to show a specific invoice by _id or invoiceID
-// app.get('/api/sales/:invoiceId', async (req, res) => {
-//     try {
-//         const invoiceId = req.params.invoiceId;
-//         const invoice = await Sale.findOne({ "Invoice ID": invoiceId });
-
-//         if (!invoice) {
-//             return res.status(404).send("Invoice not found");
-//         }
-
-//         res.json({ invoice });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).send('Error retrieving invoice data');
-//     }
-// });
-
 
 // Route to insert a new invoice
 app.post('/api/sales', async (req, res) => {
@@ -219,15 +202,7 @@ app.put('/api/sales/:invoiceId', async (req, res) => {
     }
 });
 
-// app.get('/api/sales', async (req, res) => {
-//     try {
-//         const invoices = await Sale.find();
-//         res.json({ invoices });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).send('Error retrieving invoice data');
-//     }
-// });
+
 
 
 
